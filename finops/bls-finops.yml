@@ -1,0 +1,67 @@
+name: BLS Public Data API FinOps
+description: >-
+  The Bureau of Labor Statistics Public Data API carries no direct monetary cost
+  to consumers; both the unregistered and registered tiers are offered free of
+  charge as a public-sector data service. FinOps considerations therefore center
+  on operational efficiency, indirect costs (compute, engineering time, egress),
+  and responsible usage within the published rate limits rather than on API
+  spend. Organizations integrating BLS data into commercial products or internal
+  analytics pipelines should account for the engineering effort required to
+  obtain and rotate API keys, cache frequently requested series, and handle
+  daily quota exhaustion gracefully.
+specificationVersion: '1.0'
+focus:
+  currency: USD
+  provider: Bureau of Labor Statistics
+  service: BLS Public Data API
+costModel:
+  type: Free
+  description: >-
+    No monetary charges are levied by BLS for API access. Both Version 1.0
+    (unregistered) and Version 2.0 (registered with a free API key) are
+    available at zero cost. The API is funded as a federal government public
+    information service.
+  directCost: 0
+  unit: request
+indirectCosts:
+  - name: API Key Management
+    description: >-
+      Engineering effort to register, store securely, and rotate BLS API keys.
+      Free registration via email is required for Version 2.0 access.
+    estimatedUnitCost: 0
+    currency: USD
+  - name: Caching Infrastructure
+    description: >-
+      BLS data is published on fixed schedules (e.g., monthly CPI releases).
+      Organizations should implement local caching to avoid exhausting the 500
+      daily query limit and to reduce latency for frequently accessed series.
+    recommendedAction: Cache time-series responses for at least 24 hours given the daily quota.
+  - name: Quota Monitoring
+    description: >-
+      Teams should instrument their BLS API clients to track daily query usage
+      against the 500-query (registered) or 25-query (unregistered) daily limit
+      to prevent unexpected data pipeline failures.
+    recommendedAction: Implement a query counter with alerting at 80% of daily quota.
+  - name: Data Pipeline Engineering
+    description: >-
+      Integrating BLS data into analytics or product pipelines requires parsing
+      JSON time-series payloads, mapping BLS series IDs, and scheduling
+      refreshes aligned with BLS release calendars.
+    recommendedAction: Reference the BLS release calendar at https://www.bls.gov/schedule/
+optimization:
+  - strategy: Batch Series Requests
+    description: >-
+      Use the Version 2.0 POST endpoint to fetch up to 50 series in a single
+      request, maximizing data retrieved per daily query consumed.
+    applicableTier: Registered (Version 2.0)
+  - strategy: Cache Static Historical Data
+    description: >-
+      Historical BLS data does not change retroactively (except for revisions).
+      Cache older time-series data locally to avoid redundant API calls.
+    applicableTier: Both
+  - strategy: Align Refresh Cadence to Release Schedule
+    description: >-
+      BLS publishes data on fixed release dates. Schedule API polling to run
+      shortly after each published release rather than polling continuously.
+    applicableTier: Both
+    referenceURL: https://www.bls.gov/schedule/

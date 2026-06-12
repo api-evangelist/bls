@@ -1,0 +1,60 @@
+name: BLS Public Data API Rate Limits
+description: >-
+  The BLS Public Data API enforces rate limits based on registration status.
+  Unregistered (Version 1.0) callers are constrained to 25 daily queries, 25
+  series per request, and 10 years of data per query. Registered (Version 2.0)
+  callers using a free API key receive 500 daily queries, 50 series per request,
+  and 20 years of data per query. There are no per-minute or per-second burst
+  limits documented publicly; enforcement is on a rolling daily basis.
+specificationVersion: '0.1'
+rateLimits:
+  - name: Unregistered Daily Query Limit
+    description: >-
+      Maximum number of API queries allowed per day without an API key (Version
+      1.0). Resets at midnight UTC.
+    tier: Unregistered (Version 1.0)
+    limit: 25
+    period: day
+    scope: IP address
+  - name: Unregistered Series Per Request
+    description: >-
+      Maximum number of time series that can be requested in a single API call
+      without an API key.
+    tier: Unregistered (Version 1.0)
+    limit: 25
+    period: request
+    scope: request
+  - name: Unregistered Years Per Request
+    description: >-
+      Maximum number of years of historical data that can be returned in a
+      single API call without an API key.
+    tier: Unregistered (Version 1.0)
+    limit: 10
+    period: request
+    scope: request
+    unit: years
+  - name: Registered Daily Query Limit
+    description: >-
+      Maximum number of API queries allowed per day with a free registered API
+      key (Version 2.0). Resets at midnight UTC.
+    tier: Registered (Version 2.0)
+    limit: 500
+    period: day
+    scope: API key
+  - name: Registered Series Per Request
+    description: >-
+      Maximum number of time series that can be requested in a single API call
+      with a registered API key.
+    tier: Registered (Version 2.0)
+    limit: 50
+    period: request
+    scope: request
+  - name: Registered Years Per Request
+    description: >-
+      Maximum number of years of historical data that can be returned in a
+      single API call with a registered API key.
+    tier: Registered (Version 2.0)
+    limit: 20
+    period: request
+    scope: request
+    unit: years

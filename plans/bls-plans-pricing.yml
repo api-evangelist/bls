@@ -1,0 +1,53 @@
+name: BLS Public Data API Plans and Pricing
+description: >-
+  The Bureau of Labor Statistics Public Data API is freely available to the
+  public at no cost. Two tiers of access are offered, differentiated by
+  registration status rather than by payment. The unauthenticated tier (Version
+  1.0) requires no signup and is suitable for exploratory use, while the
+  registered tier (Version 2.0) is also free but requires a valid email address
+  to obtain an API key unlocking higher limits and additional features.
+specificationVersion: '0.1'
+plans:
+  - name: Unregistered (Version 1.0)
+    description: >-
+      Open access without an API key. Suitable for lightweight exploration and
+      testing. Limited to 10 years of data per request, 25 series per query,
+      and 25 daily queries. Does not support catalog metadata, net/percent
+      change calculations, or annual averages.
+    url: https://www.bls.gov/developers/home.htm
+    price: 0
+    currency: USD
+    unit: month
+    rateLimit:
+      requests: 25
+      period: day
+    features:
+      - No registration required
+      - JSON responses via HTTPS GET
+      - Up to 10 years of data per query
+      - Up to 25 series per query
+      - Up to 25 queries per day
+  - name: Registered (Version 2.0)
+    description: >-
+      Free registered access using an API key obtained via email registration.
+      Provides higher daily query limits, larger series and year-range windows,
+      plus access to catalog metadata, statistical calculations (net and percent
+      change), and optional annual averages. Supports POST requests with a JSON
+      body for batch series retrieval.
+    url: https://data.bls.gov/registrationEngine/
+    price: 0
+    currency: USD
+    unit: month
+    rateLimit:
+      requests: 500
+      period: day
+    features:
+      - Free registration required (email)
+      - JSON responses via HTTPS GET or POST
+      - Up to 20 years of data per query
+      - Up to 50 series per query
+      - Up to 500 queries per day
+      - Catalog metadata access
+      - Net and percent change calculations
+      - Optional annual averages
+      - Multi-series batch requests via POST

@@ -1,0 +1,91 @@
+aid: https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/apis.yml
+name: Bureau of Labor Statistics
+description: >-
+  The Bureau of Labor Statistics (BLS) Public Data API provides developers
+  programmatic access to the full catalog of official federal labor and economic
+  statistics published by the U.S. Department of Labor. The API delivers
+  historical time-series data spanning employment, unemployment rates, Consumer
+  Price Index (CPI), Producer Price Index (PPI), wages and earnings, and
+  productivity metrics drawn from major BLS surveys. Two versions are available:
+  an unauthenticated Version 1.0 suitable for lightweight exploration and an
+  enhanced Version 2.0 that requires free registration and returns richer
+  results including catalog metadata, statistical calculations, and annual
+  averages. Responses are served in JSON format, and the API is freely available
+  to the public with no cost for access.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/apis.yml
+created: '2026-06-12'
+modified: '2026-06-12'
+specificationVersion: '0.19'
+tags:
+  - Bureau of Labor Statistics
+  - BLS
+  - Employment
+  - Unemployment
+  - CPI
+  - Consumer Price Index
+  - PPI
+  - Producer Price Index
+  - Wages
+  - Labor Statistics
+  - Economic Indicators
+  - Federal Government
+  - Open Data
+apis:
+  - aid: https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/apis.yml:bls-public-data-api
+    name: BLS Public Data API
+    description: >-
+      The BLS Public Data API is the primary REST interface for retrieving
+      published historical time-series data across all BLS statistical programs.
+      Version 1.0 is available without registration and supports up to 25 series
+      per request and 10 years of data per query. Version 2.0 requires free
+      registration and expands limits to 50 series per request and 20 years of
+      data, while adding support for catalog metadata, net and percent change
+      calculations, optional annual averages, and multi-series batch requests.
+      Data is returned in JSON format via HTTPS GET or POST requests.
+    humanURL: https://www.bls.gov/developers/home.htm
+    baseURL: https://api.bls.gov/publicAPI/v2
+    tags:
+      - Employment
+      - Unemployment
+      - CPI
+      - PPI
+      - Wages
+      - Economic Data
+      - Time Series
+    properties:
+      - type: Documentation
+        url: https://www.bls.gov/developers/home.htm
+      - type: OpenAPI
+        url: https://www.bls.gov/developers/api_signature_v2.htm
+      - type: Registration
+        url: https://data.bls.gov/registrationEngine/
+      - type: FAQ
+        url: https://www.bls.gov/developers/api_faqs.htm
+common:
+  - type: Website
+    url: https://www.bls.gov
+  - type: Documentation
+    url: https://www.bls.gov/developers/home.htm
+  - type: GitHubOrg
+    url: https://github.com/topics/bureau-of-labor-statistics
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/bureau-of-labor-statistics
+  - type: Blog
+    url: https://www.bls.gov/bls/news.htm
+  - type: Pricing
+    url: https://www.bls.gov/developers/home.htm
+  - type: StatusPage
+    url: https://www.bls.gov/developers/api_faqs.htm
+  - type: X
+    url: https://x.com/BLS_gov
+  - type: Plans
+    url: plans/bls-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/bls-rate-limits.yml
+  - type: FinOps
+    url: finops/bls-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
