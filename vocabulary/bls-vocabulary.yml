@@ -1,0 +1,203 @@
+vocabulary:
+  name: BLS Public Data API Vocabulary
+  description: >-
+    Controlled vocabulary for the Bureau of Labor Statistics (BLS) Public Data
+    API, covering series identifiers, survey codes, period codes, status values,
+    and domain-specific terminology used in labor and economic statistics.
+  url: https://www.bls.gov/developers/home.htm
+  version: '2.0'
+
+terms:
+
+  # Survey abbreviations
+  - term: survey_abbreviation
+    label: Survey Abbreviation
+    description: >-
+      Two-letter code that prefixes BLS series identifiers and identifies the
+      survey program that produced the data.
+    values:
+      - code: CE
+        label: Current Employment Statistics (National)
+        description: Monthly survey of payroll employment, hours, and earnings from employers.
+      - code: CU
+        label: Consumer Price Index - All Urban Consumers
+        description: Measures changes in prices paid by urban consumers for goods and services.
+      - code: WP
+        label: Producer Price Index
+        description: Measures average change in selling prices received by domestic producers.
+      - code: LN
+        label: Current Population Survey (National Labor Force)
+        description: Monthly survey measuring employment, unemployment, and labor force participation.
+      - code: LA
+        label: Local Area Unemployment Statistics
+        description: Monthly estimates of unemployment for states, counties, metro areas, and cities.
+      - code: SM
+        label: State and Metro Area Employment, Hours, and Earnings
+        description: State and metropolitan area employment data from the CES survey.
+      - code: OE
+        label: Occupational Employment and Wage Statistics
+        description: Annual data on employment and wages for detailed occupations.
+      - code: EE
+        label: Quarterly Census of Employment and Wages
+        description: Quarterly data on employment and wages by industry at the county level.
+      - code: IP
+        label: Industrial Production and Capacity Utilization
+        description: Monthly measures of real output for manufacturing, mining, and utilities.
+      - code: ML
+        label: Multifactor Productivity
+        description: Annual measures of productivity and costs for major sectors of the economy.
+      - code: NX
+        label: National Compensation Survey
+        description: Data on wages, salaries, and employer costs for employee benefits.
+      - code: JT
+        label: Job Openings and Labor Turnover Survey (JOLTS)
+        description: Monthly data on job openings, hires, and separations.
+
+  # Period codes
+  - term: period
+    label: Period Code
+    description: >-
+      Code identifying the specific time period for a data observation.
+    values:
+      - code: M01
+        label: January
+      - code: M02
+        label: February
+      - code: M03
+        label: March
+      - code: M04
+        label: April
+      - code: M05
+        label: May
+      - code: M06
+        label: June
+      - code: M07
+        label: July
+      - code: M08
+        label: August
+      - code: M09
+        label: September
+      - code: M10
+        label: October
+      - code: M11
+        label: November
+      - code: M12
+        label: December
+      - code: M13
+        label: Annual Average
+        description: Annual average value (returned when annualaverage=true in v2).
+      - code: Q01
+        label: First Quarter (January-March)
+      - code: Q02
+        label: Second Quarter (April-June)
+      - code: Q03
+        label: Third Quarter (July-September)
+      - code: Q04
+        label: Fourth Quarter (October-December)
+      - code: A01
+        label: Annual
+        description: Annual observation period.
+      - code: S01
+        label: First Half of Year
+      - code: S02
+        label: Second Half of Year
+
+  # Seasonality
+  - term: seasonality
+    label: Seasonality Adjustment
+    description: Whether the series values have been adjusted to remove seasonal variation.
+    values:
+      - code: S
+        label: Seasonally Adjusted
+        description: >-
+          Statistical adjustments have been applied to remove the effects of
+          seasonal variation, making it easier to observe underlying trends.
+      - code: U
+        label: Not Seasonally Adjusted
+        description: Raw data without seasonal adjustment, reflecting actual observed values.
+
+  # Response status
+  - term: status
+    label: API Response Status
+    description: Overall status code returned by the BLS API for each request.
+    values:
+      - code: REQUEST_SUCCEEDED
+        label: Request Succeeded
+        description: The request was processed successfully and data was returned.
+      - code: REQUEST_FAILED_ERROR
+        label: Request Failed
+        description: The request failed due to an error (invalid series ID, malformed request, etc.).
+      - code: REQUEST_NOT_PROCESSED
+        label: Request Not Processed
+        description: The request was not processed, typically due to rate limiting or server issues.
+
+  # Footnote codes
+  - term: footnote_code
+    label: Footnote Code
+    description: Single-letter codes indicating the quality or status of a specific data value.
+    values:
+      - code: P
+        label: Preliminary
+        description: Data is preliminary and subject to revision in subsequent releases.
+      - code: R
+        label: Revised
+        description: Data has been revised from a previously published value.
+      - code: ''
+        label: Final
+        description: Data is final (no footnote code indicates a final, unrevisable value).
+
+  # Common series identifiers
+  - term: common_series
+    label: Commonly Used Series Identifiers
+    description: Frequently requested BLS series IDs for major economic indicators.
+    values:
+      - code: LNS14000000
+        label: Unemployment Rate (Seasonally Adjusted)
+        description: National unemployment rate, seasonally adjusted, all civilian workers 16+.
+        survey: LN
+      - code: LNS11000000
+        label: Civilian Labor Force (Seasonally Adjusted)
+        description: Total number of people in the civilian labor force, seasonally adjusted.
+        survey: LN
+      - code: LNS12000000
+        label: Civilian Employment Level (Seasonally Adjusted)
+        description: Number of employed civilians, seasonally adjusted.
+        survey: LN
+      - code: CES0000000001
+        label: Total Nonfarm Employment (Seasonally Adjusted)
+        description: Total nonfarm payroll employment across all industries.
+        survey: CE
+      - code: CUUR0000SA0
+        label: CPI-U All Items (Not Seasonally Adjusted)
+        description: Consumer Price Index for All Urban Consumers, all items.
+        survey: CU
+      - code: CUSR0000SA0
+        label: CPI-U All Items (Seasonally Adjusted)
+        description: Consumer Price Index for All Urban Consumers, all items, seasonally adjusted.
+        survey: CU
+      - code: WPS141101
+        label: PPI Finished Goods
+        description: Producer Price Index for Finished Goods.
+        survey: WP
+      - code: PRS85006092
+        label: Nonfarm Business Labor Productivity
+        description: Quarterly output per hour for nonfarm businesses.
+        survey: ML
+
+  # API version limits
+  - term: api_version_limits
+    label: API Version Rate Limits and Capabilities
+    description: Constraints and features by API version.
+    values:
+      - code: v1
+        label: Version 1.0 (Unauthenticated)
+        description: >-
+          No registration required. Limits: 25 series per request, 10 years of
+          data per query, 500 queries per day per IP address. No catalog
+          metadata, calculations, or annual averages.
+      - code: v2
+        label: Version 2.0 (Registration Required)
+        description: >-
+          Free registration required. Limits: 50 series per request, 20 years
+          of data per query, 500 queries per day per key. Adds catalog
+          metadata, net/percent change calculations, and annual averages.

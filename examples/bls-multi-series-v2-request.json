@@ -1,0 +1,13 @@
+{
+  "seriesid": [
+    "LNS14000000",
+    "CES0000000001",
+    "CUUR0000SA0"
+  ],
+  "startyear": "2021",
+  "endyear": "2023",
+  "registrationkey": "YOUR_REGISTRATION_KEY_HERE",
+  "catalog": true,
+  "calculations": true,
+  "annualaverage": true
+}

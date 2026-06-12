@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bls/main/json-schema/bls-time-series-request.json",
+  "title": "BLS Time Series Data Request",
+  "description": "Request schema for the BLS Public Data API v2 POST endpoint to retrieve one or more time series.",
+  "type": "object",
+  "required": ["seriesid"],
+  "properties": {
+    "seriesid": {
+      "type": "array",
+      "title": "Series IDs",
+      "description": "Array of BLS series identifiers to retrieve. V1 supports up to 25; V2 supports up to 50.",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z]{2}[A-Z0-9]{6,}$",
+        "description": "A valid BLS series identifier beginning with the two-letter survey abbreviation."
+      },
+      "minItems": 1,
+      "maxItems": 50,
+      "examples": [
+        ["LNS14000000"],
+        ["LNS14000000", "CES0000000001"],
+        ["CUUR0000SA0", "WPS141101"]
+      ]
+    },
+    "startyear": {
+      "type": "string",
+      "title": "Start Year",
+      "description": "First year for which to return data. Four-digit year. V1 allows up to 10 years range; V2 allows up to 20 years.",
+      "pattern": "^\\d{4}$",
+      "examples": ["2020", "2015", "2000"]
+    },
+    "endyear": {
+      "type": "string",
+      "title": "End Year",
+      "description": "Last year for which to return data. Four-digit year. Must be >= startyear.",
+      "pattern": "^\\d{4}$",
+      "examples": ["2023", "2024"]
+    },
+    "registrationkey": {
+      "type": "string",
+      "title": "Registration Key",
+      "description": "BLS API registration key for Version 2.0 access. Enables higher limits and additional response fields. Obtain free at https://data.bls.gov/registrationEngine/.",
+      "minLength": 32
+    },
+    "catalog": {
+      "type": "boolean",
+      "title": "Include Catalog Metadata",
+      "description": "When true, includes catalog metadata for each series (series title, survey name, seasonality, measure type, demographic filters). Version 2.0 only.",
+      "default": false
+    },
+    "calculations": {
+      "type": "boolean",
+      "title": "Include Calculations",
+      "description": "When true, includes net change and percent change calculations for each data point. Version 2.0 only.",
+      "default": false
+    },
+    "annualaverage": {
+      "type": "boolean",
+      "title": "Include Annual Averages",
+      "description": "When true, includes annual average values (period M13) where available. Version 2.0 only.",
+      "default": false
+    },
+    "aspects": {
+      "type": "boolean",
+      "title": "Include Aspects",
+      "description": "When true, returns aspect data associated with the series where applicable. Version 2.0 only.",
+      "default": false
+    }
+  },
+  "examples": [
+    {
+      "seriesid": ["LNS14000000"],
+      "startyear": "2020",
+      "endyear": "2023"
+    },
+    {
+      "seriesid": ["LNS14000000", "CES0000000001", "CUUR0000SA0"],
+      "startyear": "2019",
+      "endyear": "2023",
+      "registrationkey": "YOUR_REGISTRATION_KEY_HERE",
+      "catalog": true,
+      "calculations": true,
+      "annualaverage": true
+    }
+  ]
+}

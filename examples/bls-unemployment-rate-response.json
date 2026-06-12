@@ -1,0 +1,86 @@
+{
+  "status": "REQUEST_SUCCEEDED",
+  "responseTime": 112,
+  "message": [],
+  "Results": {
+    "series": [
+      {
+        "seriesID": "LNS14000000",
+        "data": [
+          {
+            "year": "2023",
+            "period": "M12",
+            "periodName": "December",
+            "latest": "true",
+            "value": "3.7",
+            "footnotes": [{"code": "", "text": ""}]
+          },
+          {
+            "year": "2023",
+            "period": "M11",
+            "periodName": "November",
+            "latest": "false",
+            "value": "3.7",
+            "footnotes": [{"code": "", "text": ""}]
+          },
+          {
+            "year": "2023",
+            "period": "M10",
+            "periodName": "October",
+            "latest": "false",
+            "value": "3.9",
+            "footnotes": [{"code": "", "text": ""}]
+          },
+          {
+            "year": "2023",
+            "period": "M09",
+            "periodName": "September",
+            "latest": "false",
+            "value": "3.8",
+            "footnotes": [{"code": "", "text": ""}]
+          },
+          {
+            "year": "2023",
+            "period": "M08",
+            "periodName": "August",
+            "latest": "false",
+            "value": "3.8",
+            "footnotes": [{"code": "", "text": ""}]
+          },
+          {
+            "year": "2020",
+            "period": "M04",
+            "periodName": "April",
+            "latest": "false",
+            "value": "14.7",
+            "footnotes": [{"code": "", "text": ""}]
+          },
+          {
+            "year": "2020",
+            "period": "M03",
+            "periodName": "March",
+            "latest": "false",
+            "value": "4.4",
+            "footnotes": [{"code": "", "text": ""}]
+          },
+          {
+            "year": "2020",
+            "period": "M02",
+            "periodName": "February",
+            "latest": "false",
+            "value": "3.5",
+            "footnotes": [{"code": "", "text": ""}]
+          },
+          {
+            "year": "2020",
+            "period": "M01",
+            "periodName": "January",
+            "latest": "false",
+            "value": "3.6",
+            "footnotes": [{"code": "", "text": ""}]
+          }
+        ]
+      }
+    ]
+  }
+}

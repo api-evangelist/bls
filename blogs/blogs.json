@@ -1,0 +1,9 @@
+{
+  "name": "BLS News and Blog",
+  "description": "News releases and updates from the Bureau of Labor Statistics.",
+  "url": "https://www.bls.gov/bls/news.htm",
+  "rss": "https://www.bls.gov/feed/bls_latest.rss",
+  "lastFetched": null,
+  "note": "BLS blocks automated RSS fetching with Access Denied (bot protection). Feed URL is https://www.bls.gov/feed/bls_latest.rss",
+  "posts": []
+}

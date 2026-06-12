@@ -1,0 +1,144 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "bls": "https://www.bls.gov/developers/api_vocabulary#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+
+    "TimeSeries": "bls:TimeSeries",
+    "DataPoint": "bls:DataPoint",
+    "Survey": "bls:Survey",
+    "SeriesCatalog": "bls:SeriesCatalog",
+    "Calculation": "bls:Calculation",
+    "Footnote": "bls:Footnote",
+
+    "seriesID": {
+      "@id": "bls:seriesID",
+      "@type": "xsd:string"
+    },
+    "seriesTitle": {
+      "@id": "dct:title",
+      "@type": "xsd:string"
+    },
+    "surveyName": {
+      "@id": "bls:surveyName",
+      "@type": "xsd:string"
+    },
+    "surveyAbbreviation": {
+      "@id": "bls:surveyAbbreviation",
+      "@type": "xsd:string"
+    },
+    "seasonality": {
+      "@id": "bls:seasonality",
+      "@type": "xsd:string"
+    },
+    "measureDataType": {
+      "@id": "bls:measureDataType",
+      "@type": "xsd:string"
+    },
+    "year": {
+      "@id": "bls:year",
+      "@type": "xsd:gYear"
+    },
+    "period": {
+      "@id": "bls:period",
+      "@type": "xsd:string"
+    },
+    "periodName": {
+      "@id": "bls:periodName",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "schema:value",
+      "@type": "xsd:string"
+    },
+    "latest": {
+      "@id": "bls:latest",
+      "@type": "xsd:boolean"
+    },
+    "footnotes": {
+      "@id": "bls:footnotes",
+      "@container": "@set"
+    },
+    "footnoteCode": {
+      "@id": "bls:footnoteCode",
+      "@type": "xsd:string"
+    },
+    "footnoteText": {
+      "@id": "bls:footnoteText",
+      "@type": "xsd:string"
+    },
+    "calculations": {
+      "@id": "bls:calculations",
+      "@type": "@id"
+    },
+    "netChanges": {
+      "@id": "bls:netChanges"
+    },
+    "pctChanges": {
+      "@id": "bls:pctChanges"
+    },
+    "status": {
+      "@id": "bls:status",
+      "@type": "xsd:string"
+    },
+    "responseTime": {
+      "@id": "bls:responseTime",
+      "@type": "xsd:integer"
+    },
+    "message": {
+      "@id": "bls:message",
+      "@container": "@set"
+    },
+    "registrationKey": {
+      "@id": "bls:registrationKey",
+      "@type": "xsd:string"
+    },
+    "demographicRace": {
+      "@id": "bls:demographicRace",
+      "@type": "xsd:string"
+    },
+    "demographicGender": {
+      "@id": "bls:demographicGender",
+      "@type": "xsd:string"
+    },
+    "demographicAge": {
+      "@id": "bls:demographicAge",
+      "@type": "xsd:string"
+    },
+    "demographicOrigin": {
+      "@id": "bls:demographicOrigin",
+      "@type": "xsd:string"
+    },
+    "area": {
+      "@id": "schema:areaServed",
+      "@type": "xsd:string"
+    },
+    "startYear": {
+      "@id": "bls:startYear",
+      "@type": "xsd:gYear"
+    },
+    "endYear": {
+      "@id": "bls:endYear",
+      "@type": "xsd:gYear"
+    },
+    "annualAverage": {
+      "@id": "bls:annualAverage",
+      "@type": "xsd:boolean"
+    },
+    "catalog": {
+      "@id": "dcat:catalog",
+      "@type": "@id"
+    },
+    "provider": {
+      "@id": "schema:provider",
+      "@type": "@id"
+    },
+    "BureauOfLaborStatistics": {
+      "@id": "schema:GovernmentOrganization"
+    }
+  }
+}

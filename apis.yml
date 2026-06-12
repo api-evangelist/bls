@@ -58,7 +58,11 @@ apis:
       - type: Documentation
         url: https://www.bls.gov/developers/home.htm
       - type: OpenAPI
-        url: https://www.bls.gov/developers/api_signature_v2.htm
+        url: https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/openapi/bls-public-data-api-openapi.yml
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/json-schema/bls-time-series-request.json
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/json-schema/bls-time-series-response.json
       - type: Registration
         url: https://data.bls.gov/registrationEngine/
       - type: FAQ
@@ -80,6 +84,12 @@ common:
     url: https://www.bls.gov/developers/api_faqs.htm
   - type: X
     url: https://x.com/BLS_gov
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/vocabulary/bls-vocabulary.yml
+  - type: JSONLDContext
+    url: https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/json-ld/bls-context.jsonld
+  - type: BlogFeed
+    url: blogs/blogs.json
   - type: Plans
     url: plans/bls-plans-pricing.yml
   - type: RateLimits
