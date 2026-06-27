@@ -4,10 +4,17 @@
   "url": "https://www.bls.gov/bls/news.htm",
   "rss": "https://www.bls.gov/feed/bls_latest.rss",
   "lastFetched": null,
-  "note": "BLS blocks automated RSS fetching with Access Denied (bot protection). Feed URL is https://www.bls.gov/feed/bls_latest.rss",
+  "note": "BLS blocks automated RSS/HTML fetching with HTTP 403 (bot protection). Feed URL https://www.bls.gov/feed/bls_latest.rss and HTML page both return 403.",
   "posts": [],
   "repo": "bls",
   "feeds": [
+    {
+      "source": "https://www.bls.gov/feed/bls_latest.rss",
+      "feed_url": "https://www.bls.gov/feed/bls_latest.rss",
+      "title": "",
+      "saved": 1,
+      "method": "feed"
+    },
     {
       "source": "https://www.linkedin.com/company/bureau-of-labor-statistics",
       "feed_url": "https://www.linkedin.com/company/bureau-of-labor-statistics",
@@ -23,6 +30,6 @@
       "method": "none"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 1,
+  "fetched": "2026-06-27T12:03:07Z"
 }
