@@ -68,6 +68,10 @@ apis:
       - type: FAQ
         url: https://www.bls.gov/developers/api_faqs.htm
 common:
+  - type: DomainSecurity
+    url: security/bls-domain-security.yml
+  - type: Authentication
+    url: authentication/bls-authentication.yml
   - type: Website
     url: https://www.bls.gov
   - type: Documentation

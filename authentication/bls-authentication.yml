@@ -1,0 +1,25 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/bls-public-data-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  - query
+schemes:
+- name: apiKeyQuery
+  type: apiKey
+  in: query
+  parameter: registrationkey
+  description: BLS API registration key. Required for Version 2.0 features (catalog metadata,
+    calculations, annual averages, higher rate limits). Obtain for free at https://data.bls.gov/registrationEngine/.
+  sources:
+  - openapi/bls-public-data-api-openapi.yml
+- name: apiKeyBody
+  type: apiKey
+  in: header
+  parameter: registrationkey
+  description: BLS API registration key passed in the JSON request body for POST requests.
+  sources:
+  - openapi/bls-public-data-api-openapi.yml
