@@ -68,6 +68,8 @@ apis:
       - type: FAQ
         url: https://www.bls.gov/developers/api_faqs.htm
 common:
+  - type: AgenticAccess
+    url: agentic-access/bls-agentic-access.yml
   - type: DomainSecurity
     url: security/bls-domain-security.yml
   - type: Authentication
