@@ -1,0 +1,167 @@
+openapi: 3.0.3
+info:
+  title: BLS Public Data Surveys API
+  description: 'The Bureau of Labor Statistics (BLS) Public Data API provides programmatic access to the full catalog of official federal labor and economic statistics published by the U.S. Department of Labor. The API delivers historical time-series data spanning employment, unemployment rates, Consumer Price Index (CPI), Producer Price Index (PPI), wages and earnings, and productivity metrics drawn from major BLS surveys.
+
+    Two versions are available: Version 1.0 (unauthenticated, up to 25 series per request, 10 years of data per query) and Version 2.0 (requires free registration, up to 50 series per request, 20 years of data, adds catalog metadata, net/percent change calculations, and optional annual averages). Responses are served in JSON format via HTTPS POST requests.'
+  version: '2.0'
+  contact:
+    name: Bureau of Labor Statistics
+    url: https://www.bls.gov/developers/home.htm
+  license:
+    name: Public Domain (U.S. Government Work)
+    url: https://www.usa.gov/government-works
+servers:
+- url: https://api.bls.gov/publicAPI/v2
+  description: BLS Public Data API Version 2.0 (registration required)
+- url: https://api.bls.gov/publicAPI/v1
+  description: BLS Public Data API Version 1.0 (no registration required)
+tags:
+- name: Surveys
+  description: Retrieve the list of available BLS surveys
+paths:
+  /surveys:
+    get:
+      operationId: getSurveys
+      summary: Retrieve list of available BLS surveys
+      description: Returns the complete list of BLS surveys available through the Public Data API, including survey abbreviations and full names.
+      tags:
+      - Surveys
+      parameters:
+      - name: registrationkey
+        in: query
+        required: false
+        description: BLS API registration key (recommended for higher rate limits).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of available BLS surveys
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SurveysResponse'
+              examples:
+                surveys:
+                  summary: Sample surveys response
+                  value:
+                    status: REQUEST_SUCCEEDED
+                    responseTime: 50
+                    message: []
+                    Results:
+                      survey:
+                      - survey_name: Consumer Price Index - All Urban Consumers
+                        survey_abbreviation: CU
+                      - survey_name: Current Employment Statistics - CES (National)
+                        survey_abbreviation: CE
+                      - survey_name: Local Area Unemployment Statistics
+                        survey_abbreviation: LA
+  /survey/{survey_abbreviation}:
+    get:
+      operationId: getSurveyDetails
+      summary: Retrieve details for a specific BLS survey
+      description: Returns details for a specific BLS survey identified by its abbreviation, including available series lookups.
+      tags:
+      - Surveys
+      parameters:
+      - name: survey_abbreviation
+        in: path
+        required: true
+        description: Two-letter BLS survey abbreviation (e.g., CU for CPI, CE for Current Employment Statistics, LA for Local Area Unemployment).
+        schema:
+          type: string
+          example: CU
+      - name: registrationkey
+        in: query
+        required: false
+        description: BLS API registration key.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Survey details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SurveyDetailResponse'
+components:
+  schemas:
+    SurveysResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: REQUEST_SUCCEEDED
+        responseTime:
+          type: integer
+        message:
+          type: array
+          items:
+            type: string
+        Results:
+          type: object
+          properties:
+            survey:
+              type: array
+              items:
+                $ref: '#/components/schemas/Survey'
+    SurveyDetailResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: REQUEST_SUCCEEDED
+        responseTime:
+          type: integer
+        message:
+          type: array
+          items:
+            type: string
+        Results:
+          type: object
+          properties:
+            survey:
+              type: array
+              items:
+                $ref: '#/components/schemas/SurveyDetail'
+    SurveyDetail:
+      type: object
+      properties:
+        survey_name:
+          type: string
+        survey_abbreviation:
+          type: string
+        series:
+          type: array
+          items:
+            type: object
+            properties:
+              series_id:
+                type: string
+              series_title:
+                type: string
+    Survey:
+      type: object
+      properties:
+        survey_name:
+          type: string
+          description: Full name of the BLS survey.
+          example: Consumer Price Index - All Urban Consumers
+        survey_abbreviation:
+          type: string
+          description: Two-letter abbreviation used as the survey prefix in series IDs.
+          example: CU
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: registrationkey
+      description: BLS API registration key. Required for Version 2.0 features (catalog metadata, calculations, annual averages, higher rate limits). Obtain for free at https://data.bls.gov/registrationEngine/.
+    apiKeyBody:
+      type: apiKey
+      in: header
+      name: registrationkey
+      description: BLS API registration key passed in the JSON request body for POST requests.
+externalDocs:
+  description: BLS Developer Documentation
+  url: https://www.bls.gov/developers/home.htm
