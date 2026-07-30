@@ -13,7 +13,20 @@ description: >-
   averages. Responses are served in JSON format, and the API is freely available
   to the public with no cost for access.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: open
+  trial: false
+  try_now: true
+  public: true
+  label: Free · Open access
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bls.png
 url: https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/apis.yml
 created: '2026-06-12'
 modified: '2026-06-12'
@@ -33,40 +46,50 @@ tags:
   - Federal Government
   - Open Data
 apis:
-  - aid: https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/apis.yml:bls-public-data-api
-    name: BLS Public Data API
-    description: >-
-      The BLS Public Data API is the primary REST interface for retrieving
-      published historical time-series data across all BLS statistical programs.
-      Version 1.0 is available without registration and supports up to 25 series
-      per request and 10 years of data per query. Version 2.0 requires free
-      registration and expands limits to 50 series per request and 20 years of
-      data, while adding support for catalog metadata, net and percent change
-      calculations, optional annual averages, and multi-series batch requests.
-      Data is returned in JSON format via HTTPS GET or POST requests.
-    humanURL: https://www.bls.gov/developers/home.htm
-    baseURL: https://api.bls.gov/publicAPI/v2
-    tags:
-      - Employment
-      - Unemployment
-      - CPI
-      - PPI
-      - Wages
-      - Economic Data
-      - Time Series
-    properties:
-      - type: Documentation
-        url: https://www.bls.gov/developers/home.htm
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/openapi/bls-public-data-api-openapi.yml
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/json-schema/bls-time-series-request.json
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/json-schema/bls-time-series-response.json
-      - type: Registration
-        url: https://data.bls.gov/registrationEngine/
-      - type: FAQ
-        url: https://www.bls.gov/developers/api_faqs.htm
+- aid: bls:bls-surveys-api
+  name: Bureau of Labor Statistics Surveys API
+  description: Retrieve the list of available BLS surveys
+  humanURL: https://www.bls.gov/developers/home.htm
+  baseURL: https://api.bls.gov/publicAPI/v2
+  tags:
+  - Surveys
+  properties:
+  - type: OpenAPI
+    url: openapi/bls-surveys-api-openapi.yml
+  - type: Documentation
+    url: https://www.bls.gov/developers/home.htm
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/json-schema/bls-time-series-request.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/json-schema/bls-time-series-response.json
+  - type: Registration
+    url: https://data.bls.gov/registrationEngine/
+  - type: FAQ
+    url: https://www.bls.gov/developers/api_faqs.htm
+- aid: bls:bls-time-series-api
+  name: Bureau of Labor Statistics Time Series API
+  description: Retrieve single or multiple time series data
+  humanURL: https://www.bls.gov/developers/home.htm
+  baseURL: https://api.bls.gov/publicAPI/v2
+  tags:
+  - Time Series
+  properties:
+  - type: OpenAPI
+    url: openapi/bls-time-series-api-openapi.yml
+  - type: Documentation
+    url: https://www.bls.gov/developers/home.htm
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/json-schema/bls-time-series-request.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/bls/refs/heads/main/json-schema/bls-time-series-response.json
+  - type: Registration
+    url: https://data.bls.gov/registrationEngine/
+  - type: FAQ
+    url: https://www.bls.gov/developers/api_faqs.htm
 common:
   - type: AgenticAccess
     url: agentic-access/bls-agentic-access.yml
