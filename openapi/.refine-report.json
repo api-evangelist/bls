@@ -1,0 +1,16 @@
+{
+  "provider": "bls",
+  "sources": [
+    "bls-surveys-api-openapi.yml",
+    "bls-time-series-api-openapi.yml"
+  ],
+  "outputs": [
+    "bls-surveys-api-openapi.yml",
+    "bls-time-series-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
