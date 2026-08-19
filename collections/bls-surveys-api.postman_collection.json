@@ -1,0 +1,214 @@
+{
+  "item": [
+    {
+      "id": "e77aef4e-e64c-417b-84e1-c278cd628520",
+      "name": "Surveys",
+      "description": {
+        "content": "Retrieve the list of available BLS surveys",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "77c7f504-1754-41a4-9b46-aa269354123e",
+          "name": "Retrieve list of available BLS surveys",
+          "request": {
+            "name": "Retrieve list of available BLS surveys",
+            "description": {
+              "content": "Returns the complete list of BLS surveys available through the Public Data API, including survey abbreviations and full names.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "surveys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "registrationkey",
+                  "value": "<string>",
+                  "description": "BLS API registration key (recommended for higher rate limits)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6dc5c72-c894-45b7-8c75-f89460830a92",
+              "name": "List of available BLS surveys",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "surveys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "registrationkey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"REQUEST_SUCCEEDED\",\n  \"responseTime\": 50,\n  \"message\": [],\n  \"Results\": {\n    \"survey\": [\n      {\n        \"survey_name\": \"Consumer Price Index - All Urban Consumers\",\n        \"survey_abbreviation\": \"CU\"\n      },\n      {\n        \"survey_name\": \"Current Employment Statistics - CES (National)\",\n        \"survey_abbreviation\": \"CE\"\n      },\n      {\n        \"survey_name\": \"Local Area Unemployment Statistics\",\n        \"survey_abbreviation\": \"LA\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85892e33-c911-4df1-968b-a19675d32b31",
+          "name": "Retrieve details for a specific BLS survey",
+          "request": {
+            "name": "Retrieve details for a specific BLS survey",
+            "description": {
+              "content": "Returns details for a specific BLS survey identified by its abbreviation, including available series lookups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "survey",
+                ":survey_abbreviation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "registrationkey",
+                  "value": "<string>",
+                  "description": "BLS API registration key."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "survey_abbreviation",
+                  "description": "(Required) Two-letter BLS survey abbreviation (e.g., CU for CPI, CE for Current Employment Statistics, LA for Local Area Unemployment)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fca2e95d-d50e-42ef-a8e9-2950bd8c0434",
+              "name": "Survey details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "survey",
+                    ":survey_abbreviation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "registrationkey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_abbreviation",
+                      "description": "(Required) Two-letter BLS survey abbreviation (e.g., CU for CPI, CE for Current Employment Statistics, LA for Local Area Unemployment)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"REQUEST_SUCCEEDED\",\n  \"responseTime\": 2526,\n  \"message\": [\n    \"string\",\n    \"string\"\n  ],\n  \"Results\": {\n    \"survey\": [\n      {\n        \"survey_name\": \"string\",\n        \"survey_abbreviation\": \"string\",\n        \"series\": [\n          {\n            \"series_id\": \"string\",\n            \"series_title\": \"string\"\n          },\n          {\n            \"series_id\": \"string\",\n            \"series_title\": \"string\"\n          }\n        ]\n      },\n      {\n        \"survey_name\": \"string\",\n        \"survey_abbreviation\": \"string\",\n        \"series\": [\n          {\n            \"series_id\": \"string\",\n            \"series_title\": \"string\"\n          },\n          {\n            \"series_id\": \"string\",\n            \"series_title\": \"string\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bls.gov/publicAPI/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "04c87a19-74d3-4127-a6a9-fbf8cf032fb2",
+    "name": "BLS Public Data Surveys API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Bureau of Labor Statistics (BLS) Public Data API provides programmatic access to the full catalog of official federal labor and economic statistics published by the U.S. Department of Labor. The API delivers historical time-series data spanning employment, unemployment rates, Consumer Price Index (CPI), Producer Price Index (PPI), wages and earnings, and productivity metrics drawn from major BLS surveys.\nTwo versions are available: Version 1.0 (unauthenticated, up to 25 series per request, 10 years of data per query) and Version 2.0 (requires free registration, up to 50 series per request, 20 years of data, adds catalog metadata, net/percent change calculations, and optional annual averages). Responses are served in JSON format via HTTPS POST requests.\n\nContact Support:\n Name: Bureau of Labor Statistics",
+      "type": "text/plain"
+    }
+  }
+}

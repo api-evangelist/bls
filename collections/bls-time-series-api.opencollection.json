@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BLS Public Data Surveys Time Series API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Time Series",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve multiple time series data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bls.gov/publicAPI/v2/timeseries/data/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve data for one or more BLS time series identifiers. Version 2.0 supports up to 50 series per request and up to 20 years of data, and optionally returns catalog metadata, net change, percent change, and annual averages. Version 1.0 supports up to 25 series and 10 years of data without an API key."
+        },
+        {
+          "info": {
+            "name": "Retrieve a single time series by series ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bls.gov/publicAPI/v2/timeseries/data/:series_id",
+            "params": [
+              {
+                "name": "series_id",
+                "value": "",
+                "type": "path",
+                "description": "A valid BLS series identifier (e.g., LNS14000000 for national unemployment rate, CES0000000001 for total nonfarm employment)."
+              },
+              {
+                "name": "startyear",
+                "value": "",
+                "type": "query",
+                "description": "The first year of data to return (four-digit year). If omitted, returns the most recent three years."
+              },
+              {
+                "name": "endyear",
+                "value": "",
+                "type": "query",
+                "description": "The last year of data to return (four-digit year). If omitted, returns the current year."
+              },
+              {
+                "name": "registrationkey",
+                "value": "",
+                "type": "query",
+                "description": "BLS API registration key obtained via free registration at https://data.bls.gov/registrationEngine/. Required for v2 features and higher rate limits."
+              }
+            ]
+          },
+          "docs": "Retrieve data for a single BLS time series using an HTTP GET request. Series ID must be a valid BLS series identifier. Optional query parameters allow filtering by year range."
+        },
+        {
+          "info": {
+            "name": "Retrieve popular/featured time series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bls.gov/publicAPI/v2/timeseries/popular",
+            "params": [
+              {
+                "name": "survey",
+                "value": "",
+                "type": "query",
+                "description": "Filter popular series by survey abbreviation (e.g., CE, CU, LA)."
+              },
+              {
+                "name": "registrationkey",
+                "value": "",
+                "type": "query",
+                "description": "BLS API registration key."
+              }
+            ]
+          },
+          "docs": "Returns a list of commonly requested BLS time series identifiers."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

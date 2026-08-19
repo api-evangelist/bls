@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BLS Public Data Surveys API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Surveys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve list of available BLS surveys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bls.gov/publicAPI/v2/surveys",
+            "params": [
+              {
+                "name": "registrationkey",
+                "value": "",
+                "type": "query",
+                "description": "BLS API registration key (recommended for higher rate limits)."
+              }
+            ]
+          },
+          "docs": "Returns the complete list of BLS surveys available through the Public Data API, including survey abbreviations and full names."
+        },
+        {
+          "info": {
+            "name": "Retrieve details for a specific BLS survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bls.gov/publicAPI/v2/survey/:survey_abbreviation",
+            "params": [
+              {
+                "name": "survey_abbreviation",
+                "value": "",
+                "type": "path",
+                "description": "Two-letter BLS survey abbreviation (e.g., CU for CPI, CE for Current Employment Statistics, LA for Local Area Unemployment)."
+              },
+              {
+                "name": "registrationkey",
+                "value": "",
+                "type": "query",
+                "description": "BLS API registration key."
+              }
+            ]
+          },
+          "docs": "Returns details for a specific BLS survey identified by its abbreviation, including available series lookups."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
