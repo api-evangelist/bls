@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: BLS Public Data Surveys Time Series API
   description: 'The Bureau of Labor Statistics (BLS) Public Data API provides programmatic access to the full catalog of official federal labor and economic statistics published by the U.S. Department of Labor. The API delivers historical time-series data spanning employment, unemployment rates, Consumer Price Index (CPI), Producer Price Index (PPI), wages and earnings, and productivity metrics drawn from major BLS surveys.
@@ -218,6 +218,130 @@ components:
             $ref: '#/components/schemas/Footnote'
         calculations:
           $ref: '#/components/schemas/DataPointCalculations'
+    SeriesCatalog:
+      type: object
+      description: Catalog metadata for a BLS series (returned when catalog=true, v2 only).
+      properties:
+        series_title:
+          type: string
+          example: Unemployment Rate
+        series_id:
+          type: string
+          example: LNS14000000
+        seasonality:
+          type: string
+          enum:
+          - Seasonally Adjusted
+          - Not Seasonally Adjusted
+          example: Seasonally Adjusted
+        survey_name:
+          type: string
+          example: Labor Force Statistics including the National Unemployment Rate
+        survey_abbreviation:
+          type: string
+          example: LN
+        measure_data_type:
+          type: string
+          example: Percent
+        commerce_industry:
+          type:
+          - string
+          - 'null'
+        occupation:
+          type:
+          - string
+          - 'null'
+        cps_labor_force_status:
+          type:
+          - string
+          - 'null'
+          example: Unemployment rate
+        demographic_race:
+          type:
+          - string
+          - 'null'
+          example: All Races
+        demographic_gender:
+          type:
+          - string
+          - 'null'
+          example: Both Sexes
+        demographic_origin:
+          type:
+          - string
+          - 'null'
+          example: All Origins
+        demographic_age:
+          type:
+          - string
+          - 'null'
+          example: 16 years and over
+        demographic_education:
+          type:
+          - string
+          - 'null'
+        area:
+          type:
+          - string
+          - 'null'
+          example: United States
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - REQUEST_FAILED_ERROR
+          - REQUEST_NOT_PROCESSED
+          example: REQUEST_FAILED_ERROR
+        responseTime:
+          type: integer
+        message:
+          type: array
+          items:
+            type: string
+          description: Array of error messages describing what went wrong.
+          example:
+          - Series INVALID_ID does not exist
+        Results:
+          type:
+          - object
+          - 'null'
+    Footnote:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Footnote code (e.g., P for preliminary, R for revised).
+          example: P
+        text:
+          type: string
+          description: Full text of the footnote.
+          example: Preliminary
+    PopularSeriesResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: REQUEST_SUCCEEDED
+        responseTime:
+          type: integer
+        message:
+          type: array
+          items:
+            type: string
+        Results:
+          type: object
+          properties:
+            series:
+              type: array
+              items:
+                type: object
+                properties:
+                  seriesID:
+                    type: string
+                  seriesTitle:
+                    type: string
     DataPointCalculations:
       type: object
       description: Calculations for a specific data point.
@@ -289,96 +413,6 @@ components:
           type: boolean
           default: false
           description: If true, returns aspect data associated with the series where applicable (v2 only).
-    Footnote:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Footnote code (e.g., P for preliminary, R for revised).
-          example: P
-        text:
-          type: string
-          description: Full text of the footnote.
-          example: Preliminary
-    SeriesCatalog:
-      type: object
-      description: Catalog metadata for a BLS series (returned when catalog=true, v2 only).
-      properties:
-        series_title:
-          type: string
-          example: Unemployment Rate
-        series_id:
-          type: string
-          example: LNS14000000
-        seasonality:
-          type: string
-          enum:
-          - Seasonally Adjusted
-          - Not Seasonally Adjusted
-          example: Seasonally Adjusted
-        survey_name:
-          type: string
-          example: Labor Force Statistics including the National Unemployment Rate
-        survey_abbreviation:
-          type: string
-          example: LN
-        measure_data_type:
-          type: string
-          example: Percent
-        commerce_industry:
-          type: string
-          nullable: true
-        occupation:
-          type: string
-          nullable: true
-        cps_labor_force_status:
-          type: string
-          nullable: true
-          example: Unemployment rate
-        demographic_race:
-          type: string
-          nullable: true
-          example: All Races
-        demographic_gender:
-          type: string
-          nullable: true
-          example: Both Sexes
-        demographic_origin:
-          type: string
-          nullable: true
-          example: All Origins
-        demographic_age:
-          type: string
-          nullable: true
-          example: 16 years and over
-        demographic_education:
-          type: string
-          nullable: true
-        area:
-          type: string
-          nullable: true
-          example: United States
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - REQUEST_FAILED_ERROR
-          - REQUEST_NOT_PROCESSED
-          example: REQUEST_FAILED_ERROR
-        responseTime:
-          type: integer
-        message:
-          type: array
-          items:
-            type: string
-          description: Array of error messages describing what went wrong.
-          example:
-          - Series INVALID_ID does not exist
-        Results:
-          type: object
-          nullable: true
     TimeSeriesResponse:
       type: object
       properties:
@@ -406,30 +440,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/SeriesResult'
-    PopularSeriesResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          example: REQUEST_SUCCEEDED
-        responseTime:
-          type: integer
-        message:
-          type: array
-          items:
-            type: string
-        Results:
-          type: object
-          properties:
-            series:
-              type: array
-              items:
-                type: object
-                properties:
-                  seriesID:
-                    type: string
-                  seriesTitle:
-                    type: string
     Calculations:
       type: object
       description: Net and percent change calculations for the series (v2, calculations=true).

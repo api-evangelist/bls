@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: BLS Public Data Surveys API
   description: 'The Bureau of Labor Statistics (BLS) Public Data API provides programmatic access to the full catalog of official federal labor and economic statistics published by the U.S. Department of Labor. The API delivers historical time-series data spanning employment, unemployment rates, Consumer Price Index (CPI), Producer Price Index (PPI), wages and earnings, and productivity metrics drawn from major BLS surveys.
@@ -86,25 +86,33 @@ paths:
                 $ref: '#/components/schemas/SurveyDetailResponse'
 components:
   schemas:
-    SurveysResponse:
+    Survey:
       type: object
       properties:
-        status:
+        survey_name:
           type: string
-          example: REQUEST_SUCCEEDED
-        responseTime:
-          type: integer
-        message:
+          description: Full name of the BLS survey.
+          example: Consumer Price Index - All Urban Consumers
+        survey_abbreviation:
+          type: string
+          description: Two-letter abbreviation used as the survey prefix in series IDs.
+          example: CU
+    SurveyDetail:
+      type: object
+      properties:
+        survey_name:
+          type: string
+        survey_abbreviation:
+          type: string
+        series:
           type: array
           items:
-            type: string
-        Results:
-          type: object
-          properties:
-            survey:
-              type: array
-              items:
-                $ref: '#/components/schemas/Survey'
+            type: object
+            properties:
+              series_id:
+                type: string
+              series_title:
+                type: string
     SurveyDetailResponse:
       type: object
       properties:
@@ -124,33 +132,25 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/SurveyDetail'
-    SurveyDetail:
+    SurveysResponse:
       type: object
       properties:
-        survey_name:
+        status:
           type: string
-        survey_abbreviation:
-          type: string
-        series:
+          example: REQUEST_SUCCEEDED
+        responseTime:
+          type: integer
+        message:
           type: array
           items:
-            type: object
-            properties:
-              series_id:
-                type: string
-              series_title:
-                type: string
-    Survey:
-      type: object
-      properties:
-        survey_name:
-          type: string
-          description: Full name of the BLS survey.
-          example: Consumer Price Index - All Urban Consumers
-        survey_abbreviation:
-          type: string
-          description: Two-letter abbreviation used as the survey prefix in series IDs.
-          example: CU
+            type: string
+        Results:
+          type: object
+          properties:
+            survey:
+              type: array
+              items:
+                $ref: '#/components/schemas/Survey'
   securitySchemes:
     apiKeyQuery:
       type: apiKey
